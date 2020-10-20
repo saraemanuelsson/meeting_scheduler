@@ -28,14 +28,32 @@ const MeetingSchedulerContainer = () => {
         })
     }, [])
 
+    //To do: What if there's no match for user.id and meeting.owner?
+    const getMeetingDisplayDetails = () => {
+        const meetingDetails = meetings.map(meeting => {
+            const meetingOwner = users.find(user => user.id === meeting.owner)
+            return {
+                ...meeting,
+                start_time: adjustToLocalTime(meeting.start_time),
+                end_time: adjustToLocalTime(meeting.end_time), 
+                owner: `${meetingOwner.first_name} ${meetingOwner.last_name}`}
+        })
+        return meetingDetails
+    }
+
+    const adjustToLocalTime = (time) => {
+        const localTime = new Date(time)
+        return localTime;
+    }
+
     return (
         <Router>
             <>
                 <NavBar />
                 <SideBar />
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/meetings" component={Schedule} />
+                    <Route exact path="/" render={(props) => (<Home meetings={getMeetingDisplayDetails()} />)} />
+                    <Route path="/schedule" component={Schedule} />
                 </Switch>
             </>
         </Router>
