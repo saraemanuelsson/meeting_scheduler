@@ -1,10 +1,11 @@
 import React from 'react';
 import './styles/App.scss';
+import MeetingSchedulerContainer from "./containers/MeetingSchedulerContainer"
 
 function App() {
   return (
     <div className="App">
-      <h1>Hey</h1>
+      <MeetingSchedulerContainer />
     </div>
   );
 }
