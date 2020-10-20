@@ -53,7 +53,7 @@ const MeetingSchedulerContainer = () => {
                 <SideBar />
                 <Switch>
                     <Route exact path="/" render={(props) => (<Home meetings={getMeetingDisplayDetails()} />)} />
-                    <Route path="/schedule" component={Schedule} />
+                    <Route path="/schedule" render={(props) => (<Schedule users={users} />)} />
                 </Switch>
             </>
         </Router>
