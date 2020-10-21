@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom" 
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import NavBar from "../components/NavBar"
 import SideBar from "../components/SideBar"
 import Home from "../components/Home"
@@ -32,6 +32,10 @@ const MeetingSchedulerContainer = () => {
         })
     }
 
+    const postMeeting = () => {
+        console.log("Hi!");
+    }
+
     //To do: What if there's no match for user.id and meeting.owner?
     const getMeetingDisplayDetails = () => {
 
@@ -62,7 +66,7 @@ const MeetingSchedulerContainer = () => {
                 <SideBar />
                 <Switch>
                     <Route exact path="/" render={(props) => (<Home meetings={getMeetingDisplayDetails()} />)} />
-                    <Route path="/schedule" render={(props) => (<Schedule users={users} />)} />
+                    <Route path="/schedule" render={(props) => (<Schedule users={users} handleNewMeeting={postMeeting}/>)} />
                 </Switch>
             </>
         </Router>
