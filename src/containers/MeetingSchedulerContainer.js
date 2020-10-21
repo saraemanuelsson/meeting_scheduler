@@ -32,8 +32,18 @@ const MeetingSchedulerContainer = () => {
         })
     }
 
-    const postMeeting = () => {
-        console.log("Hi!");
+    const postMeeting = (payload) => {
+        console.log("Post time!");
+        const url = "https://coding-test.ajenta.io/meetings"
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: JSON.stringify(payload)
+        })
+        .then(res => console.log(res))
     }
 
     //To do: What if there's no match for user.id and meeting.owner?
