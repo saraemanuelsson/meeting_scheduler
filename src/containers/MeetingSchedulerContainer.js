@@ -11,6 +11,10 @@ const MeetingSchedulerContainer = () => {
     const [ meetings, setMeetings ] = useState([])
 
     useEffect(() => {
+        getData()
+    }, [])
+
+    const getData = () => {
         const url = "https://coding-test.ajenta.io/"
         const endPoints = ["users", "meetings"]
 
@@ -26,22 +30,27 @@ const MeetingSchedulerContainer = () => {
             })
             .catch(error => console.error)
         })
-    }, [])
+    }
 
     //To do: What if there's no match for user.id and meeting.owner?
     const getMeetingDisplayDetails = () => {
-        const meetingDetails = meetings.map(meeting => {
-            const meetingOwner = users.find(user => user.id === meeting.owner)
-            return {
-                ...meeting,
-                start_time: adjustToLocalTime(meeting.start_time),
-                end_time: adjustToLocalTime(meeting.end_time), 
-                owner: `${meetingOwner.first_name} ${meetingOwner.last_name}`}
-        })
+
+        let meetingDetails = []
+        
+        if (meetings.length !== 0 && users.length !== 0) {
+            meetingDetails = meetings.map(meeting => {
+                const meetingOwner = users.find(user => user.id === meeting.owner)
+                return {
+                    ...meeting,
+                    start_time: getDate(meeting.start_time),
+                    end_time: getDate(meeting.end_time), 
+                    owner: `${meetingOwner.first_name} ${meetingOwner.last_name}`}
+            })
+        }
         return meetingDetails
     }
 
-    const adjustToLocalTime = (time) => {
+    const getDate = (time) => {
         const localTime = new Date(time)
         return localTime;
     }

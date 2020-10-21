@@ -1,8 +1,8 @@
 import React from "react"
 
-const MeetingListItem = () => {
+const MeetingListItem = ( {callid, owner, name, date, start } ) => {
     return (
-        <h1>Meeting list item!</h1>
+    <li><span>{callid}</span><span>{owner}</span><span>{name}</span><span>{date}</span><span>{start}</span></li>
     )
 }
 
