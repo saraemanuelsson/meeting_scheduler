@@ -35,11 +35,16 @@ const MeetingSchedulerContainer = () => {
         const usersWithFullNames = userData.map(user => {
             return {
                 id: user.id,
-                name: `${user.first_name} ${user.last_name}`,
+                name: `${capitalizeFirstLetter(user.first_name)} ${capitalizeFirstLetter(user.last_name)}`,
                 email: user.email
             }
         })
         return usersWithFullNames
+    }
+
+    const capitalizeFirstLetter = (string) => {
+        const prettyString = string.charAt(0).toUpperCase() + string.slice(1)
+        return prettyString
     }
 
     //To do: What if there's no match for user.id and meeting.owner?
@@ -52,6 +57,7 @@ const MeetingSchedulerContainer = () => {
                 const meetingOwner = users.find(user => user.id === meeting.owner)
                 return {
                     ...meeting,
+                    name: capitalizeFirstLetter(meeting.name),
                     start_time: new Date(meeting.start_time),
                     owner: meetingOwner.name
                 }
