@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 
 const Schedule = ({ users, handleNewMeeting }) => {
@@ -19,7 +19,7 @@ const Schedule = ({ users, handleNewMeeting }) => {
             end_time: endTime.toISOString(),
             guests: meetingGuests
         }
-        console.log(payload);
+
         handleNewMeeting(payload)
     }
     
@@ -29,32 +29,26 @@ const Schedule = ({ users, handleNewMeeting }) => {
         return new Date(endTime)
     }
 
-    let guestOptions = []
-
-    if (users.length !== 0) {
-        guestOptions = users.map(user => {
-            return (
-            <option value={user.id} key={user.id}>{`${user.first_name} ${user.last_name}`}</option>
-            )
-        })
-    }
-
-    let guestNames = []
-
-    if (guests.length !== 0) {
-        guestNames = guests.map(guest => {
-            return (
-                <li key={guest.id}>{guest.first_name} {guest.last_name}</li>
-            )
-        })
-    }
-
     const addGuest = () => {
         const newGuestId = parseInt(watch("guests"))
-        const newGuest = users[users.findIndex(user => user.id === newGuestId)]
+        const indexOfGuest = users.findIndex(user => user.id === newGuestId)
+        const newGuest = users[indexOfGuest]
         const newGuests = [...guests, newGuest]
         setGuests(newGuests)
+        // users.splice(indexOfGuest, 1) -- Need to figure out better way of removing/highlighting selected guests
     }
+
+    const addedGuests = guests.map(guest => {
+        return (
+            <li key={guest.id}>{guest.name}</li>
+        )
+    })
+
+    const guestOptions = users.map(user => {
+        return (
+            <option value={user.id} key={user.id}>{user.name}</option>
+        )
+    })
 
     return (
         <form onSubmit={handleSubmit(onScheduleMeeting)}>
@@ -74,13 +68,12 @@ const Schedule = ({ users, handleNewMeeting }) => {
             </div>
             <div>
                 <label htmlFor="guests">Add Guests</label>
-                <select name="guests" ref={register({required: true})} defaultValue="default" onChange={addGuest}>
-                    <option disabled value="default">Search Contacts</option>
-                    {guestOptions}
+                <select name="guests" ref={register({required: true})} defaultValue="default" onChange={addGuest} selectedindex="0" id="drop">
+                    <option value="default">Select Contacts</option>
+                    { guestOptions }
                 </select>
-                {errors.guests && <span>Required field</span>}
                 <ul>
-                    {guestNames}
+                    { addedGuests }
                 </ul>
 
             </div>
