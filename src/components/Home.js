@@ -21,9 +21,9 @@ const Home = ({meetings}) => {
     }
     
     return (
-        <div>
-            <h1>Scheduled Meetings({meetings.length})</h1>
-            <h3><span>Call id</span><span>Owner</span><span>Name</span><span>Date</span><span>Start</span></h3>
+        <div className="page-content">
+            <h1 className="heading primary">Scheduled Meetings({meetings.length})</h1>
+            <h2 className="heading secondary"><span>Call id</span><span>Owner</span><span>Name</span><span>Date</span><span>Start</span></h2>
             <ul>
                 {meetingNodes}
             </ul>

@@ -51,33 +51,36 @@ const Schedule = ({ users, handleNewMeeting }) => {
     })
 
     return (
-        <form onSubmit={handleSubmit(onScheduleMeeting)}>
-            <div>
-                <label htmlFor="title">Title</label>
-                <input type="text" name="title" placeholder="Meeting Title" ref={register({required: true})} />
-                <label htmlFor="description">Description</label>
-                <input type="text" name="description" placeholder="Meeting Description" ref={register({required: true})} />
-                <label htmlFor="duration">Duration</label>
-                <select name="duration" ref={register} defaultValue="default">
-                    <option disabled value="default">Duration</option>
-                    <option value={1}>1h</option>
-                    <option value={2}>2h</option>
-                    <option value={3}>3h</option>
-                </select>
-                <input type="submit" value="Schedule Meeting"/>
-            </div>
-            <div>
-                <label htmlFor="guests">Add Guests</label>
-                <select name="guests" ref={register({required: true})} defaultValue="default" onChange={addGuest} selectedindex="0" id="drop">
-                    <option value="default">Select Contacts</option>
-                    { guestOptions }
-                </select>
-                <ul>
-                    { addedGuests }
-                </ul>
+        <div className="page-content"> 
+            <h1 className="heading primary">Schedule Meeting</h1>
+            <form onSubmit={handleSubmit(onScheduleMeeting)}>
+                <div>
+                    <label htmlFor="title" className="heading secondary">Title</label>
+                    <input type="text" name="title" placeholder="Meeting Title" ref={register({required: true})} />
+                    <label htmlFor="description" className="heading secondary">Description</label>
+                    <input type="text" name="description" placeholder="Meeting Description" ref={register({required: true})} />
+                    <label htmlFor="duration" className="heading secondary">Duration</label>
+                    <select name="duration" ref={register} defaultValue="default">
+                        <option disabled value="default">Duration</option>
+                        <option value={1}>1h</option>
+                        <option value={2}>2h</option>
+                        <option value={3}>3h</option>
+                    </select>
+                    <input type="submit" value="Schedule Meeting"/>
+                </div>
+                <div>
+                    <label htmlFor="guests" className="heading secondary">Add Guests</label>
+                    <select name="guests" ref={register({required: true})} defaultValue="default" onChange={addGuest} selectedindex="0" id="drop">
+                        <option value="default">Select Contacts</option>
+                        { guestOptions }
+                    </select>
+                    <ul>
+                        { addedGuests }
+                    </ul>
 
-            </div>
-        </form>
+                </div>
+            </form>
+        </div>
     )
 }
 

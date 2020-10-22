@@ -1,0 +1,27 @@
+.main {
+    display: grid;
+    grid-template-columns: 15vw auto;
+    grid-template-rows: 9vh auto;
+    grid-gap: 0;
+}
+
+.sidenav {
+    width: 15vw;
+    height: 100%;
+    position: fixed;
+    overflow-x: hidden;
+    grid-row: 1/3;
+    background: blue;
+}
+
+.topnav {
+    background: red;
+    grid-column: 2/3;
+    width: 100%;
+    // height: 9vh;
+}
+
+.page-content {
+    grid-column: 2/3;
+    background: yellow;
+}

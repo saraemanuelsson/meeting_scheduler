@@ -11,6 +11,17 @@ const MeetingSchedulerContainer = () => {
     const [ meetings, setMeetings ] = useState([])
 
     useEffect(() => {
+        const addFullNamesToUsers = (userData) => {
+            const usersWithFullNames = userData.map(user => {
+                return {
+                    id: user.id,
+                    name: `${capitalizeFirstLetter(user.first_name)} ${capitalizeFirstLetter(user.last_name)}`,
+                    email: user.email
+                }
+            })
+            return usersWithFullNames
+        }
+
         const getData = () => {
             const url = "https://coding-test.ajenta.io/"
             const endPoints = ["users", "meetings"]
@@ -30,17 +41,6 @@ const MeetingSchedulerContainer = () => {
         }
         getData()
     }, [])
-
-    const addFullNamesToUsers = (userData) => {
-        const usersWithFullNames = userData.map(user => {
-            return {
-                id: user.id,
-                name: `${capitalizeFirstLetter(user.first_name)} ${capitalizeFirstLetter(user.last_name)}`,
-                email: user.email
-            }
-        })
-        return usersWithFullNames
-    }
 
     const capitalizeFirstLetter = (string) => {
         const prettyString = string.charAt(0).toUpperCase() + string.slice(1)
@@ -94,14 +94,14 @@ const MeetingSchedulerContainer = () => {
 
     return (
         <Router>
-            <>
-                <NavBar />
+            <div className="main">
                 <SideBar />
+                <NavBar />
                 <Switch>
                     <Route exact path="/" render={(props) => (<Home meetings={createDisplayMeetingList()} />)} />
                     <Route path="/schedule" render={(props) => (<Schedule users={users} handleNewMeeting={postMeeting}/>)} />
                 </Switch>
-            </>
+            </div>
         </Router>
     )
 }
