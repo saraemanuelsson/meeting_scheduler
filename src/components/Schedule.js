@@ -1,11 +1,13 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-
+import PageHeader from "./PageHeader"
 
 const Schedule = ({ users, handleNewMeeting }) => {
 
     const { register, handleSubmit, watch, errors } = useForm()
     const [ guests, setGuests ] = useState([])
+
+    const header = "Schedule Meeting"
 
     const onScheduleMeeting = (data) => {
         const startTime = new Date()
@@ -53,7 +55,7 @@ const Schedule = ({ users, handleNewMeeting }) => {
 
     return (
         <div className="page-content">
-            <h1 className="heading primary">Schedule Meeting</h1>
+            <PageHeader title={header}/>
             <div className="content-container">
                 <form className="flex-content" onSubmit={handleSubmit(onScheduleMeeting)}>
                     <div className="form-details large-flex-item">

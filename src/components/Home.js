@@ -1,7 +1,10 @@
 import React from "react"
 import MeetingListItem from "./MeetingListItem"
+import PageHeader from "./PageHeader"
 
 const Home = ({meetings}) => {
+
+    const header = `Scheduled Meetings(${meetings.length})`
 
     let meetingNodes = []
 
@@ -22,7 +25,7 @@ const Home = ({meetings}) => {
     
     return (
         <div className="page-content">
-            <h1 className="heading primary">Scheduled Meetings({meetings.length})</h1>
+            <PageHeader title={header} />
             <div className="content-container">
                 <h2 className="heading secondary meeting-headings">
                     <span>Call id</span>
