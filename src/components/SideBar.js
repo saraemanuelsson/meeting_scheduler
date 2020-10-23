@@ -18,12 +18,12 @@ const SideBar = () => {
                 <ul>
                     <li onClick={() => {setHomeSelected(true)}}>
                         <Link to="/">
-                            <img className="nav-image" src={homeButton} alt="Home" width="100%"/>
+                            <img className="nav-image" src={homeButton} alt="Home"/>
                         </Link>
                     </li>
                     <li onClick={() => {setHomeSelected(false)}}>
                         <Link to="/schedule">
-                            <img className="nav-image" src={scheduleButton} alt="Schedule" width="100%"/>
+                            <img className="nav-image" src={scheduleButton} alt="Schedule"/>
                         </Link>
                     </li>
                 </ul>

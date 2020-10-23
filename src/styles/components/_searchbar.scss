@@ -1,0 +1,16 @@
+.search-input {
+    display: block;
+    border-radius: $default-rounded-corners;
+    width: 70%;
+    padding: 10px 45px 10px 20px;
+    border: none;
+    margin: auto;
+}
+
+.looking-glass {
+    height: 70%;
+    position: absolute;
+    z-index: 10;
+    top: 15%;
+    right: 18%;
+}

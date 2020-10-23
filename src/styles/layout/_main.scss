@@ -18,6 +18,8 @@
     background: $color-blue;
     grid-column: 2/3;
     width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
 }
 
 .page-content {

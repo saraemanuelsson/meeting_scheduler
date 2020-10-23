@@ -22,6 +22,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   color: #003049;
+  line-height: 1.7;
 }
 
 .heading {
@@ -35,6 +36,84 @@ body {
 
 .sidenav-buttons {
   margin-top: 24vh;
+}
+
+.nav-image {
+  width: 100%;
+}
+
+.search {
+  position: relative;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.nav-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.topnav-list {
+  list-style: none;
+}
+
+.topnav-link {
+  display: inline-block;
+  margin: 0 3rem 0 3rem;
+}
+
+.topnav-link a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.topnav-link a:hover {
+  color: #ff7f27;
+}
+
+#logout-button a {
+  color: #ff7f27;
+  background: #ffffff;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+}
+
+#logout-button a:hover {
+  color: #ffffff;
+  background: #ff7f27;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 100px;
+  padding: 1rem 2rem;
+}
+
+.search-input {
+  display: block;
+  border-radius: 100px;
+  width: 70%;
+  padding: 10px 45px 10px 20px;
+  border: none;
+  margin: auto;
+}
+
+.looking-glass {
+  height: 70%;
+  position: absolute;
+  z-index: 10;
+  top: 15%;
+  right: 18%;
 }
 
 .main {
@@ -64,6 +143,10 @@ body {
   -ms-grid-column-span: 1;
   grid-column: 2/3;
   width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 60% 40%;
+      grid-template-columns: 60% 40%;
 }
 
 .page-content {

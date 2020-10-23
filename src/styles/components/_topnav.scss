@@ -1,0 +1,43 @@
+.search {
+    position: relative;
+    align-self: center;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topnav-list {
+    list-style: none;
+}
+
+.topnav-link {
+    display: inline-block;
+    margin: 0 3rem 0 3rem;
+    a {
+        text-decoration: none;
+        color: $color-white;
+        &:hover {
+            color: $color-orange;
+        }
+    }
+}
+
+#logout-button {
+    a {
+        @include button($color-orange, $color-white);
+        &:hover {
+            @include button($color-white, $color-orange);
+        }
+    }
+}
+
+
+
+
+
+
+
+
