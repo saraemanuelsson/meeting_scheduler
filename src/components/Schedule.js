@@ -6,10 +6,11 @@ const Schedule = ({ users, handleNewMeeting }) => {
 
     const { register, handleSubmit, watch, errors } = useForm()
     const [ guests, setGuests ] = useState([])
+    const [ message, setMessage ] = useState("")
 
     const header = "Schedule Meeting"
 
-    const onScheduleMeeting = (data) => {
+    const onScheduleMeeting = (data, event) => {
         const startTime = new Date()
         const endTime = getEndTime(parseInt(data.duration))
         const meetingGuests = guests.map(guest => guest.id)
@@ -24,6 +25,9 @@ const Schedule = ({ users, handleNewMeeting }) => {
         }
 
         handleNewMeeting(payload)
+        setMessage("Meeting Scheduled!")
+        event.target.reset()
+        setGuests([])
     }
     
     const getEndTime = (duration) => {
@@ -71,6 +75,7 @@ const Schedule = ({ users, handleNewMeeting }) => {
                             <option value={3}>3h</option>
                         </select>
                         <input className="orange-button" type="submit" value="Schedule Meeting"/>
+                        <p>{message}</p>
                     </div>
                     <div className="form-details small-flex-item">
                         <label htmlFor="guests" className="heading secondary input-label">Add Guests</label>
