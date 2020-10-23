@@ -5,6 +5,10 @@
     margin-bottom: 2rem;
 }
 
+.meeting-list {
+    list-style: none;
+}
+
 .meeting-list-item {
     font-size: $default-font-size;
     font-weight: 500;
@@ -13,15 +17,6 @@
     grid-template-columns: 8% 17% 31% 22% 22%;
     padding: 2rem 0 2rem 2rem;
     margin-bottom: 2rem;
-    border-radius: 10px;
+    border-radius: $default-slightly-rounded-corners;
     box-shadow: $default-box-shadow;
-}
-
-// .meeting-span {
-//     display: inline-block;
-//     vertical-align: top;
-// }
-
-.meeting-callid {
-    color: $color-orange;
 }

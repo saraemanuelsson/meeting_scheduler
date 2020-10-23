@@ -1,61 +1,27 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { useForm } from "react-hook-form"
 
+export const Form = (props) => {
 
-const Schedule = ({ users, handleNewMeeting }) => {
-
-    const { register, handleSubmit, watch, errors } = useForm()
-    const [ guests, setGuests ] = useState([])
-
-    const onScheduleMeeting = (data) => {
-        const startTime = new Date()
-        const endTime = getEndTime(parseInt(data.duration))
-        const meetingGuests = guests.map(guest => guest.id)
-
-        const payload = {
-            name: data.title,
-            owner: guests[0].id,
-            description: data.description,
-            start_time: startTime.toISOString(),
-            end_time: endTime.toISOString(),
-            guests: meetingGuests
-        }
-
-        handleNewMeeting(payload)
-    }
     
-    const getEndTime = (duration) => {
-        const currentTime = new Date()
-        const endTime = currentTime.setHours(currentTime.getHours() + duration)
-        return new Date(endTime)
-    }
-
-    const addGuest = () => {
-        const newGuestId = parseInt(watch("guests"))
-        const indexOfGuest = users.findIndex(user => user.id === newGuestId)
-        const newGuest = users[indexOfGuest]
-        const newGuests = [...guests, newGuest]
-        setGuests(newGuests)
-        // users.splice(indexOfGuest, 1) -- Need to figure out better way of removing/highlighting selected guests
-    }
-
-    const addedGuests = guests.map(guest => {
+    const addedGuests = props.guests.map(guest => {
         return (
             <li key={guest.id}>{guest.name}</li>
         )
     })
 
-    const guestOptions = users.map(user => {
+    const guestOptions = props.users.map(user => {
         return (
             <option value={user.id} key={user.id}>{user.name}</option>
         )
     })
 
+    const { register, handleSubmit, watch, errors } = useForm()
     return (
-        <div className="page-content">
-            <h1 className="heading primary">Schedule Meeting</h1>
+        <div className={"form"}>
+        <h1 className="heading primary">Schedule Meeting</h1>
             <div className="content-container">
-                <form className="flex-content" onSubmit={handleSubmit(onScheduleMeeting)}>
+                <form className="flex-content" onSubmit={handleSubmit(props.onScheduleMeeting)}>
                     <div className="form-details large-flex-item">
                         <label htmlFor="title" className="heading secondary input-label">Title</label>
                         <input className="input-field" type="text" name="title" placeholder="Weekly Meeting" ref={register({required: true})} />
@@ -72,7 +38,7 @@ const Schedule = ({ users, handleNewMeeting }) => {
                     </div>
                     <div className="form-details small-flex-item">
                         <label htmlFor="guests" className="heading secondary input-label">Add Guests</label>
-                        <select className="input-field" name="guests" ref={register({required: true})} defaultValue="default" onChange={addGuest} selectedindex="0" id="drop">
+                        <select className="input-field" name="guests" ref={register({required: true})} defaultValue="default" onChange={props.addGuest} selectedindex="0" id="drop">
                             <option value="default">Select Contacts</option>
                             { guestOptions }
                         </select>
@@ -86,5 +52,3 @@ const Schedule = ({ users, handleNewMeeting }) => {
         </div>
     )
 }
-
-export default Schedule

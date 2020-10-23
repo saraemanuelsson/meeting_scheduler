@@ -23,13 +23,13 @@ const Home = ({meetings}) => {
     return (
         <div className="page-content">
             <h1 className="heading primary">Scheduled Meetings({meetings.length})</h1>
-            <div className="meetings-container">
+            <div className="content-container">
                 <h2 className="heading secondary meeting-headings">
                     <span>Call id</span>
-                    <span className="meeting-span meeting-owner">Owner</span>
-                    <span className="meeting-span meeting-name">Name</span>
-                    <span className="meeting-span meeting-date">Date</span>
-                    <span className="meeting-span meeting-start">Start</span>
+                    <span>Owner</span>
+                    <span>Name</span>
+                    <span>Date</span>
+                    <span>Start</span>
                 </h2>
                 <ul className="meeting-list">
                     {meetingNodes}

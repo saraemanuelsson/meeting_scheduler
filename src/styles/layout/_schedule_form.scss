@@ -1,0 +1,26 @@
+.form-details {
+    padding: 3rem;
+    background: $color-white;
+    border-radius: $default-slightly-rounded-corners;
+    box-shadow: $default-box-shadow;
+    display: inline-block;
+}
+
+.flex-content {
+    display: flex;
+    align-items: flex-start stretch;
+}
+
+.input-label {
+    display: block;
+}
+
+.large-flex-item {
+    width: 59%;
+}
+
+.small-flex-item {
+    margin-left: 2%;
+    width: 39%;
+}
+

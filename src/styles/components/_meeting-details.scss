@@ -1,0 +1,41 @@
+.orange-button {
+    @include button($color-white, $color-orange);
+    font-weight: 500;
+    display: block;
+    margin: 7rem auto 4rem;
+}
+
+.input-field {
+    background: $color-grey-form;
+    border-radius: 5px;
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: none;
+    box-shadow: inset 2px 3px 5px rgba(0,0,0,0.08);
+    margin-top: 1rem;
+    &:focus {
+        outline: none !important;
+        box-shadow: 0 0 0 1px $color-orange;
+    }
+}
+
+.dropdown {
+    background: $color-grey-dropdown;
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: none;
+    width: 17%;
+    &:selected {
+
+    }
+}
+
+.input-label {
+    &:not(:first-child) {
+        margin-top: 4rem;
+    }
+}
+
+option {
+    position: absolute;
+}

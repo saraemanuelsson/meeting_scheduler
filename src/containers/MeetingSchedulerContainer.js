@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
 import NavBar from "../components/NavBar"
 import SideBar from "../components/SideBar"
 import Home from "../components/Home"
 import Schedule from "../components/Schedule"
 
-const MeetingSchedulerContainer = () => {
+const MeetingSchedulerContainer = (props) => {
 
     const [ users, setUsers ] = useState([])
     const [ meetings, setMeetings ] = useState([])
@@ -89,7 +89,7 @@ const MeetingSchedulerContainer = () => {
             end_time: meetingDetails.end_time,
             owner: meetingDetails.owner
         }
-        setMeetings(meetings => [...meetings, newMeeting])
+        setMeetings(meetings => [...meetings, newMeeting]);
     }
 
     return (

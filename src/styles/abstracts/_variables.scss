@@ -4,6 +4,7 @@ $color-orange: #ff7f27;
 $color-light-grey: #efeeee;
 $color-white: #ffffff;
 $color-grey-form: #fbfbfb;
+$color-grey-dropdown: #f7f7f7;
 
 //font-size
 $default-font-size: 1.2rem;
@@ -12,4 +13,5 @@ $default-primary-nav-font-size: 1.8rem;
 
 //styling-elements
 $default-rounded-corners: 100px;
-$default-box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+$default-slightly-rounded-corners: 10px;
+$default-box-shadow: 2px 3px 5px rgba(0,0,0,0.1);
