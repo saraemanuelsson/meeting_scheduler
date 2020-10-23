@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -9,8 +9,15 @@ body {
 
 .heading {
     text-transform: uppercase;
+}
+
+.primary {
+    font-size: $default-header-font-size;
+    font-weight: 600;
+    ;
+}
+
+.secondary {
+    font-size: $default-font-size;
     font-weight: 500;
-    .primary {
-        font-size: $default-header-font-size;
-    }
 }

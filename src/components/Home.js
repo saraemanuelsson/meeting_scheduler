@@ -8,7 +8,7 @@ const Home = ({meetings}) => {
     if (meetings.length !== 0) {
         meetingNodes = meetings.map(meeting => {
             return (
-                <MeetingListItem 
+                <MeetingListItem
                 key={meeting.callid}
                 callid={meeting.callid}
                 owner={meeting.owner}
@@ -23,11 +23,18 @@ const Home = ({meetings}) => {
     return (
         <div className="page-content">
             <h1 className="heading primary">Scheduled Meetings({meetings.length})</h1>
-            <h2 className="heading secondary"><span>Call id</span><span>Owner</span><span>Name</span><span>Date</span><span>Start</span></h2>
-            <ul>
-                {meetingNodes}
-            </ul>
-
+            <div className="meetings-container">
+                <h2 className="heading secondary meeting-headings">
+                    <span>Call id</span>
+                    <span className="meeting-span meeting-owner">Owner</span>
+                    <span className="meeting-span meeting-name">Name</span>
+                    <span className="meeting-span meeting-date">Date</span>
+                    <span className="meeting-span meeting-start">Start</span>
+                </h2>
+                <ul className="meeting-list">
+                    {meetingNodes}
+                </ul>
+            </div>
         </div>
 
     )
