@@ -107,7 +107,7 @@ body {
   position: absolute;
   z-index: 10;
   top: 17%;
-  right: 17%;
+  right: 18%;
 }
 
 .meeting-headings {
@@ -160,7 +160,6 @@ body {
   border: none;
   -webkit-box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.08);
           box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.08);
-  margin-top: 1rem;
 }
 
 .input-field:focus {
@@ -176,6 +175,10 @@ body {
   -webkit-box-shadow: none;
           box-shadow: none;
   width: 17%;
+}
+
+.input-label {
+  margin-bottom: 1rem;
 }
 
 .input-label:not(:first-child) {
@@ -264,6 +267,7 @@ body {
           box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
   display: inline-block;
   position: relative;
+  height: 55vh;
 }
 
 .flex-content {
@@ -286,5 +290,45 @@ body {
 .small-flex-item {
   margin-left: 2%;
   width: 39%;
+  position: relative;
+}
+
+#search-icon-form {
+  right: 5%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+}
+
+.dropdown-content:checked + .dropdown-label {
+  background: #ff7f27;
+  color: #ffffff;
+}
+
+.guest-dropdown {
+  position: relative;
+  display: inline;
+  -webkit-box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  overflow: hidden;
+}
+
+.dropdown-label {
+  display: block;
+  padding: 1rem;
+  background: #fbfbfb;
+}
+
+.dropdown-label:hover {
+  background: #efeeee;
+}
+
+.dropdown-list {
+  overflow-y: scroll;
+  overflow: hidden;
+  max-height: 100%;
 }
 /*# sourceMappingURL=App.css.map */

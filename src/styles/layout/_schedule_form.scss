@@ -5,6 +5,7 @@
     box-shadow: $default-box-shadow;
     display: inline-block;
     position: relative;
+    height: 55vh;
 }
 
 .flex-content {
@@ -23,5 +24,41 @@
 .small-flex-item {
     margin-left: 2%;
     width: 39%;
+    position: relative;
 }
 
+#search-icon-form {
+    right: 5%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    &:checked + .dropdown-label {
+        background: $color-orange;
+        color: $color-white;
+    }
+}
+
+.guest-dropdown {
+    position: relative;
+    display: inline;
+    box-shadow: $default-box-shadow;
+    width: 100%;
+    overflow: hidden;
+}
+
+.dropdown-label {
+    display: block;
+    padding: 1rem;
+    background: $color-grey-form;
+    &:hover {
+        background: $color-light-grey;
+    }
+}
+
+.dropdown-list {
+    overflow-y: scroll;
+    overflow: hidden;
+    max-height: 100%;
+}

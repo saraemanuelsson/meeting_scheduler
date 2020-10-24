@@ -129,7 +129,7 @@ const MeetingSchedulerContainer = (props) => {
                 <NavBar handleSearch={filterMeetings}/>
                 <Switch>
                     <Route exact path="/" render={(props) => (<Home meetings={filteredMeetings} users={users} capitalizeFirstLetter={capitalizeFirstLetter}/>)} />
-                    <Route path="/schedule" render={(props) => (<Schedule users={users} handleNewMeeting={postMeeting}/>)} />
+                    <Route path="/schedule" render={(props) => (<Schedule users={users} handleNewMeeting={postMeeting} searchContacts={getOwnerIdsFromSearch}/>)} />
                 </Switch>
             </div>
         </Router>

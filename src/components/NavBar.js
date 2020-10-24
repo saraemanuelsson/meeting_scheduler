@@ -4,8 +4,6 @@ import LookingGlass from "../assets/LookingGlass.png"
 
 const NavBar = ({ handleSearch }) => {
 
-
-
     const { register, handleSubmit, watch, errors } = useForm()
     
     const onSearch = () => {
