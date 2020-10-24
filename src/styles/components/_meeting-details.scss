@@ -25,9 +25,7 @@
     padding: 1rem;
     box-shadow: none;
     width: 17%;
-    &:selected {
 
-    }
 }
 
 .input-label {
@@ -36,6 +34,9 @@
     }
 }
 
-option {
+#confirmation {
     position: absolute;
+    top: 90%;
+    left: 50%;
+    margin-left: -50px;
 }

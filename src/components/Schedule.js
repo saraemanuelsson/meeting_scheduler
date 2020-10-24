@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import PageHeader from "./PageHeader"
+import FormLabel from "./FormLabel"
 
 const Schedule = ({ users, handleNewMeeting }) => {
 
@@ -45,6 +46,10 @@ const Schedule = ({ users, handleNewMeeting }) => {
         // users.splice(indexOfGuest, 1) -- Need to figure out better way of removing/highlighting selected guests
     }
 
+    const removeMessage = () => {
+        setMessage("")
+    }
+
     const addedGuests = guests.map(guest => {
         return (
             <li key={guest.id}>{guest.name}</li>
@@ -61,13 +66,13 @@ const Schedule = ({ users, handleNewMeeting }) => {
         <div className="page-content">
             <PageHeader title={header}/>
             <div className="content-container">
-                <form className="flex-content" onSubmit={handleSubmit(onScheduleMeeting)}>
+                <form className="flex-content" onSubmit={handleSubmit(onScheduleMeeting)} onClick={removeMessage}>
                     <div className="form-details large-flex-item">
-                        <label htmlFor="title" className="heading secondary input-label">Title</label>
+                        <FormLabel htmlFor="title" label="Title" />
                         <input className="input-field" type="text" name="title" placeholder="Weekly Meeting" ref={register({required: true})} />
-                        <label htmlFor="description" className="heading secondary input-label">Description</label>
+                        <FormLabel htmlFor="description" label="Description" />
                         <input className="input-field" type="text" name="description" placeholder="Weekly Stand Up and Project" ref={register({required: true})} />
-                        <label htmlFor="duration" className="heading secondary input-label">Duration</label>
+                        <FormLabel htmlFor="duration" label="Duration" />
                         <select className="input-field dropdown" name="duration" ref={register} defaultValue="default">
                             <option disabled value="default">...</option>
                             <option value={1}>1h</option>
@@ -75,10 +80,10 @@ const Schedule = ({ users, handleNewMeeting }) => {
                             <option value={3}>3h</option>
                         </select>
                         <input className="orange-button" type="submit" value="Schedule Meeting"/>
-                        <p>{message}</p>
+                        <p id="confirmation">{message}</p>
                     </div>
                     <div className="form-details small-flex-item">
-                        <label htmlFor="guests" className="heading secondary input-label">Add Guests</label>
+                        <FormLabel htmlFor="guests" label="Add Guests" />
                         <select className="input-field" name="guests" ref={register({required: true})} defaultValue="default" onChange={addGuest} selectedindex="0" id="drop">
                             <option value="default">Select Contacts</option>
                             { guestOptions }
