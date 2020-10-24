@@ -17,9 +17,9 @@ const Schedule = ({ users, handleNewMeeting }) => {
         const meetingGuests = guests.map(guest => guest.id)
 
         const payload = {
-            name: data.title,
+            name: data.title.toLowerCase(),
             owner: guests[0].id,
-            description: data.description,
+            description: data.description.toLowerCase(),
             start_time: startTime.toISOString(),
             end_time: endTime.toISOString(),
             guests: meetingGuests

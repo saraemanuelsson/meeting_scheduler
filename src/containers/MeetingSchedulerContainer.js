@@ -66,6 +66,61 @@ const MeetingSchedulerContainer = (props) => {
         return meetingDetails
     }
 
+    const filteredMeetings = (searchCriteria) => {
+        
+        searchCriteria.toLowerCase()
+
+        const matchingUserIds = searchForOwnerName(searchCriteria)
+
+        // console.log("matching users", matchingUserIds);
+        
+        const matchingMeetings = []
+
+        if (meetings.length !== 0 && users.length !== 0) {
+            // console.log("test", meetings[0].name.includes("s"));
+            console.log("hits if");
+            // matchingMeetings = meetings.filter(meeting => {
+            //     meeting.name.includes(searchCriteria) //|| matchingUserIds.includes(meeting.owner)
+            // })
+            for (const meeting of meetings) {
+                if (meeting.name.includes(searchCriteria) || matchingUserIds.includes(meeting.owner)) {
+                    console.log("second if");
+                    const meetingOwner = users.find(user => user.id === meeting.owner)
+                    console.log("owner", meetingOwner);
+                    const prettyMeeting = {
+                        ...meeting,
+                        name: capitalizeFirstLetter(meeting.name),
+                        start_time: new Date(meeting.start_time),
+                        owner: meetingOwner.name
+                    }
+                    matchingMeetings.push(prettyMeeting)
+                }
+            }
+        }
+
+        return matchingMeetings
+    }
+
+    //returns array of ownerIds that match
+    const searchForOwnerName = (searchCriteria) => {
+
+        const matchingIds = []
+
+        for (const user of users) {
+            if (user.name.toLowerCase().includes(searchCriteria)) {
+                matchingIds.push(user.id)
+            }
+        }
+
+        return matchingIds
+
+        // const found_users = users.filter(user => {
+        //     user.name.toLowerCase().includes(searchCriteria)
+        // })
+
+        // return found_users.map(user => user.id)
+    }
+
     const postMeeting = (payload) => {;
         const url = "https://coding-test.ajenta.io/meetings"
 
@@ -98,7 +153,7 @@ const MeetingSchedulerContainer = (props) => {
                 <SideBar />
                 <NavBar />
                 <Switch>
-                    <Route exact path="/" render={(props) => (<Home meetings={createDisplayMeetingList()} />)} />
+                    <Route exact path="/" render={(props) => (<Home meetings={filteredMeetings("ac")} />)} />
                     <Route path="/schedule" render={(props) => (<Schedule users={users} handleNewMeeting={postMeeting}/>)} />
                 </Switch>
             </div>
