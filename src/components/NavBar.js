@@ -2,11 +2,19 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import LookingGlass from "../assets/LookingGlass.png"
 
-const NavBar = () => {
+const NavBar = ({ handleSearch }) => {
+
+
 
     const { register, handleSubmit, watch, errors } = useForm()
     
     const onSearch = () => {
+        //redirect to home if you're on schedule?
+        console.log(watch("search"));
+    }
+
+    const handleSearchInput = () => {
+        handleSearch(watch("search").toLowerCase())
         console.log(watch("search"));
     }
 
@@ -14,7 +22,7 @@ const NavBar = () => {
         <div className="topnav">
             <div className="search">
                 <form onSubmit={handleSubmit(onSearch)}>
-                    <input className="search-input" type="text" name="search" placeholder="Search" ref={register} />
+                    <input onChange={handleSearchInput} className="search-input" type="text" name="search" placeholder="Search" ref={register} />
                     <img className="looking-glass" src={LookingGlass} alt="Search"/>
                 </form>
             </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import NavBar from "../components/NavBar"
 import SideBar from "../components/SideBar"
 import Home from "../components/Home"
@@ -9,6 +9,7 @@ const MeetingSchedulerContainer = (props) => {
 
     const [ users, setUsers ] = useState([])
     const [ meetings, setMeetings ] = useState([])
+    const [ filteredMeetings, setFilteredMeetings ] = useState([])
 
     useEffect(() => {
         const addFullNamesToUsers = (userData) => {
@@ -26,18 +27,25 @@ const MeetingSchedulerContainer = (props) => {
             const url = "https://coding-test.ajenta.io/"
             const endPoints = ["users", "meetings"]
     
-            endPoints.forEach(endPoint => {
-                fetch(url + endPoint)
+            const promises = endPoints.map(endPoint => {
+                return fetch(url + endPoint)
                 .then(res => res.json())
                 .then(data => {
                     if (endPoint === "users") {
                         setUsers(addFullNamesToUsers(data))
                     } else if (endPoint === "meetings") {
                         setMeetings(data)
+                        // setFilteredMeetings(filterMeetings(""))
+                        console.log("setting meetings");
+                        console.log("data", data)
                     }
                 })
+                // .then(() => filterMeetings(""))
                 .catch(error => console.error)
             })
+
+            Promise.all(promises)
+
         }
         getData()
     }, [])
@@ -47,62 +55,42 @@ const MeetingSchedulerContainer = (props) => {
         return prettyString
     }
 
-    //To do: What if there's no match for user.id and meeting.owner?
-    const createDisplayMeetingList = () => {
-
-        let meetingDetails = []
-        
-        if (meetings.length !== 0 && users.length !== 0) {
-            meetingDetails = meetings.map(meeting => {
-                const meetingOwner = users.find(user => user.id === meeting.owner)
-                return {
-                    ...meeting,
-                    name: capitalizeFirstLetter(meeting.name),
-                    start_time: new Date(meeting.start_time),
-                    owner: meetingOwner.name
-                }
-            })
+    const getDisplayDetailsForMeeting = (meeting) => {
+        const meetingOwner = users.find(user => user.id === meeting.owner)
+        const prettyMeeting = {
+            ...meeting,
+            name: capitalizeFirstLetter(meeting.name),
+            start_time: new Date(meeting.start_time),
+            owner: meetingOwner.name
         }
-        return meetingDetails
+        return prettyMeeting
     }
 
-    const filteredMeetings = (searchCriteria) => {
+    const filterMeetings = (searchCriteria) => {
+        console.log("trying to filter", meetings);
         
         searchCriteria.toLowerCase()
 
-        const matchingUserIds = searchForOwnerName(searchCriteria)
-
-        // console.log("matching users", matchingUserIds);
+        const matchingUserIds = getOwnerIdsFromSearch(searchCriteria)
         
         const matchingMeetings = []
 
         if (meetings.length !== 0 && users.length !== 0) {
-            // console.log("test", meetings[0].name.includes("s"));
-            console.log("hits if");
             // matchingMeetings = meetings.filter(meeting => {
-            //     meeting.name.includes(searchCriteria) //|| matchingUserIds.includes(meeting.owner)
+            //     meeting.name.includes(searchCriteria) || matchingUserIds.includes(meeting.owner)
             // })
             for (const meeting of meetings) {
                 if (meeting.name.includes(searchCriteria) || matchingUserIds.includes(meeting.owner)) {
-                    console.log("second if");
-                    const meetingOwner = users.find(user => user.id === meeting.owner)
-                    console.log("owner", meetingOwner);
-                    const prettyMeeting = {
-                        ...meeting,
-                        name: capitalizeFirstLetter(meeting.name),
-                        start_time: new Date(meeting.start_time),
-                        owner: meetingOwner.name
-                    }
-                    matchingMeetings.push(prettyMeeting)
+                    const meetingWithDisplayDetails = getDisplayDetailsForMeeting(meeting)
+                    matchingMeetings.push(meetingWithDisplayDetails)
                 }
             }
         }
 
-        return matchingMeetings
+        setFilteredMeetings(matchingMeetings)
     }
 
-    //returns array of ownerIds that match
-    const searchForOwnerName = (searchCriteria) => {
+    const getOwnerIdsFromSearch = (searchCriteria) => {
 
         const matchingIds = []
 
@@ -151,9 +139,9 @@ const MeetingSchedulerContainer = (props) => {
         <Router>
             <div className="main">
                 <SideBar />
-                <NavBar />
+                <NavBar handleSearch={filterMeetings}/>
                 <Switch>
-                    <Route exact path="/" render={(props) => (<Home meetings={filteredMeetings("ac")} />)} />
+                    <Route exact path="/" render={(props) => (<Home meetings={filteredMeetings} />)} />
                     <Route path="/schedule" render={(props) => (<Schedule users={users} handleNewMeeting={postMeeting}/>)} />
                 </Switch>
             </div>
