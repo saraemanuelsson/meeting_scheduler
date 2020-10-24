@@ -2,22 +2,37 @@ import React from "react"
 import MeetingListItem from "./MeetingListItem"
 import PageHeader from "./PageHeader"
 
-const Home = ({meetings}) => {
+const Home = ({meetings, users, capitalizeFirstLetter}) => {
 
     const header = `Scheduled Meetings(${meetings.length})`
 
+    const getNameForUser = (meeting) => {
+        const meetingOwner = users.find(user => user.id === meeting.owner)
+        return meetingOwner.name
+    }
+
+    const getPrettyDate = (meeting) => {
+        const startDate = new Date(meeting.start_time)
+        return startDate.toLocaleDateString("default", {day: "numeric", month: "long", year: "numeric"})
+    }
+
+    const getPrettyTime = (meeting) => {
+        const startTime = new Date(meeting.start_time)
+        return startTime.toLocaleTimeString("default", {hour12: true, hour: '2-digit', minute: '2-digit'})
+    }
+
     let meetingNodes = []
 
-    if (meetings.length !== 0) {
+    if (meetings.length !== 0 && users.length !== 0) {
         meetingNodes = meetings.map(meeting => {
             return (
                 <MeetingListItem
                 key={meeting.callid}
                 callid={meeting.callid}
-                owner={meeting.owner}
-                name={meeting.name}
-                date={meeting.start_time.toLocaleDateString("default", {day: "numeric", month: "long", year: "numeric"})}
-                start={meeting.start_time.toLocaleTimeString("default", {hour12: true, hour: '2-digit', minute: '2-digit'})}
+                owner={getNameForUser(meeting)}
+                name={capitalizeFirstLetter(meeting.name)}
+                date={getPrettyDate(meeting)}
+                start={getPrettyTime(meeting)}
                 />
             )
         })

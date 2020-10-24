@@ -27,7 +27,7 @@ const MeetingSchedulerContainer = (props) => {
             const url = "https://coding-test.ajenta.io/"
             const endPoints = ["users", "meetings"]
     
-            const promises = endPoints.map(endPoint => {
+            endPoints.forEach(endPoint => {
                 return fetch(url + endPoint)
                 .then(res => res.json())
                 .then(data => {
@@ -35,16 +35,11 @@ const MeetingSchedulerContainer = (props) => {
                         setUsers(addFullNamesToUsers(data))
                     } else if (endPoint === "meetings") {
                         setMeetings(data)
-                        // setFilteredMeetings(filterMeetings(""))
-                        console.log("setting meetings");
-                        console.log("data", data)
+                        setFilteredMeetings(data)
                     }
                 })
-                // .then(() => filterMeetings(""))
                 .catch(error => console.error)
             })
-
-            Promise.all(promises)
 
         }
         getData()
@@ -67,7 +62,6 @@ const MeetingSchedulerContainer = (props) => {
     }
 
     const filterMeetings = (searchCriteria) => {
-        console.log("trying to filter", meetings);
         
         searchCriteria.toLowerCase()
 
@@ -76,13 +70,10 @@ const MeetingSchedulerContainer = (props) => {
         const matchingMeetings = []
 
         if (meetings.length !== 0 && users.length !== 0) {
-            // matchingMeetings = meetings.filter(meeting => {
-            //     meeting.name.includes(searchCriteria) || matchingUserIds.includes(meeting.owner)
-            // })
+
             for (const meeting of meetings) {
                 if (meeting.name.includes(searchCriteria) || matchingUserIds.includes(meeting.owner)) {
-                    const meetingWithDisplayDetails = getDisplayDetailsForMeeting(meeting)
-                    matchingMeetings.push(meetingWithDisplayDetails)
+                    matchingMeetings.push(meeting)
                 }
             }
         }
@@ -101,12 +92,6 @@ const MeetingSchedulerContainer = (props) => {
         }
 
         return matchingIds
-
-        // const found_users = users.filter(user => {
-        //     user.name.toLowerCase().includes(searchCriteria)
-        // })
-
-        // return found_users.map(user => user.id)
     }
 
     const postMeeting = (payload) => {;
@@ -124,6 +109,7 @@ const MeetingSchedulerContainer = (props) => {
     }
 
     const saveNewMeeting = (meetingDetails) => {
+        console.log(meetingDetails);
         const newMeetingCallId = meetings[meetings.length -1].callid + 1
         const newMeeting = {
             callid: newMeetingCallId,
@@ -132,7 +118,8 @@ const MeetingSchedulerContainer = (props) => {
             end_time: meetingDetails.end_time,
             owner: meetingDetails.owner
         }
-        setMeetings(meetings => [...meetings, newMeeting]);
+        setFilteredMeetings(meetings => [...meetings, newMeeting])
+        setMeetings(meetings => [...meetings, newMeeting])
     }
 
     return (
@@ -141,7 +128,7 @@ const MeetingSchedulerContainer = (props) => {
                 <SideBar />
                 <NavBar handleSearch={filterMeetings}/>
                 <Switch>
-                    <Route exact path="/" render={(props) => (<Home meetings={filteredMeetings} />)} />
+                    <Route exact path="/" render={(props) => (<Home meetings={filteredMeetings} users={users} capitalizeFirstLetter={capitalizeFirstLetter}/>)} />
                     <Route path="/schedule" render={(props) => (<Schedule users={users} handleNewMeeting={postMeeting}/>)} />
                 </Switch>
             </div>

@@ -15,7 +15,6 @@ const NavBar = ({ handleSearch }) => {
 
     const handleSearchInput = () => {
         handleSearch(watch("search").toLowerCase())
-        console.log(watch("search"));
     }
 
     return (
