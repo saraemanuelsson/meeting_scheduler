@@ -2,9 +2,14 @@ import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import FormLabel from "./FormLabel"
 
-const MeetingDetailsForm = ({ message }) => {
+const MeetingDetailsForm = ({ message, saveMeeting }) => {
     
-    const { register, handleSubmit, watch, errors } = useForm()
+    const { register, handleSubmit } = useForm()
+
+    const onScheduleMeeting = (data, event) => {
+        saveMeeting(data)
+        event.target.reset()
+    }
     
     return (
         <div className="form-details large-flex-item">
@@ -26,3 +31,5 @@ const MeetingDetailsForm = ({ message }) => {
         </div>
     )
 }
+
+export default MeetingDetailsForm

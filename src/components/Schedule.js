@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import PageHeader from "./PageHeader"
+import MeetingDetailsForm from "./MeetingDetailsForm"
 import FormLabel from "./FormLabel"
 import LookingGlass from "../assets/LookingGlass.png"
 
@@ -13,15 +14,15 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
 
     const header = "Schedule Meeting"
 
-    const onScheduleMeeting = (data, event) => {
+    const saveMeeting = (meetingDetails) => {
         const startTime = new Date()
-        const endTime = getEndTime(parseInt(data.duration))
+        const endTime = getEndTime(parseInt(meetingDetails.duration))
         const meetingGuests = guests.map(guest => guest.id)
 
         const payload = {
-            name: data.title.toLowerCase(),
+            name: meetingDetails.title.toLowerCase(),
             owner: guests[0].id,
-            description: data.description.toLowerCase(),
+            description: meetingDetails.description.toLowerCase(),
             start_time: startTime.toISOString(),
             end_time: endTime.toISOString(),
             guests: meetingGuests
@@ -29,7 +30,6 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
 
         handleNewMeeting(payload)
         setMessage("Meeting Scheduled!")
-        event.target.reset()
         setGuests([])
     }
     
@@ -70,30 +70,14 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
     })
 
     const handleSearchInput = (searchInput) => {
-        //Out of scope for exercise but should handle search contacts here
+        //Out of scope for exercise but should handle search contacts with searchContacts() here
     }
 
     return (
         <div className="page-content">
             <PageHeader title={header}/>
             <div className="content-container flex-content" onClick={removeMessage}>
-                <div className="form-details large-flex-item">
-                    <form onSubmit={handleSubmit(onScheduleMeeting)} onClick={removeMessage}>
-                        <FormLabel htmlFor="title" label="Title" />
-                        <input className="input-field" type="text" name="title" placeholder="Weekly Meeting" required ref={register({required: true})} />
-                        <FormLabel htmlFor="description" label="Description" />
-                        <input className="input-field" type="text" name="description" placeholder="Weekly Stand Up and Project" ref={register({required: true})} />
-                        <FormLabel htmlFor="duration" label="Duration" />
-                        <select className="input-field dropdown" name="duration" ref={register} defaultValue="default">
-                            <option disabled value="default">...</option>
-                            <option value={1}>1h</option>
-                            <option value={2}>2h</option>
-                            <option value={3}>3h</option>
-                        </select>
-                        <input className="orange-button" type="submit" value="Schedule Meeting"/>
-                        <p id="confirmation">{message}</p>
-                    </form>
-                </div>
+                <MeetingDetailsForm message={message} saveMeeting={saveMeeting}/>
                 <div className="form-details small-flex-item">
                     <form action="">
                         <FormLabel htmlFor="guests" label="Add Guests" />
