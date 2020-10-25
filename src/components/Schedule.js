@@ -39,52 +39,48 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
         return new Date(endTime)
     }
 
-    const addGuest = () => {
-        const newGuestId = parseInt(watch("guests"))
-        const indexOfGuest = users.findIndex(user => user.id === newGuestId)
-        const newGuest = users[indexOfGuest]
-        const newGuests = [...guests, newGuest]
-        setGuests(newGuests)
-        // users.splice(indexOfGuest, 1) -- Need to figure out better way of removing/highlighting selected guests
+    const addGuests = () => {
+        const addedGuests = watch("guests").map(id => parseInt(id))
+        setGuests(addedGuests)
     }
 
     const removeMessage = () => {
         setMessage("")
     }
 
-    // const addedGuests = guests.map(guest => {
-    //     return (
-    //         <li key={guest.id}>{guest.name}</li>
-    //     )
-    // })
-
-    console.log(watch("guests"));
-
     let guestOptions = []
 
     if (displayDropdown) {
         guestOptions = users.map(user => {
             return (
-                <div className="dropdown-list" key={user.id}>
-                    <input type="checkbox" className="dropdown-content" id={user.id} name="guests" ref={register} value={user.id}/>
+                <div key={user.id}>
+                    <input onChange={addGuests} checked={guests.includes(user.id) ? true : false} type="checkbox" className="dropdown-content" id={user.id} name="guests" ref={register} value={user.id}/>
                     <label className="heading secondary dropdown-label" htmlFor={user.id}>{user.name}</label>
                 </div>
             )
         })
     }
 
+    const addedGuests = guests.map(guestId => {
+        const cross = '\u2716'
+        const guest = users.find(user => user.id === guestId)
+        return (
+            <li className="heading secondary" key={guest.email}>{guest.name}</li>
+        )
+    })
+
     const handleSearchInput = (searchInput) => {
-        searchContacts(searchInput.toLowerCase())
+        //Out of scope for exercise but should handle search contacts here
     }
 
     return (
         <div className="page-content">
             <PageHeader title={header}/>
-            <div className="content-container flex-content">
+            <div className="content-container flex-content" onClick={removeMessage}>
                 <div className="form-details large-flex-item">
                     <form onSubmit={handleSubmit(onScheduleMeeting)} onClick={removeMessage}>
                         <FormLabel htmlFor="title" label="Title" />
-                        <input className="input-field" type="text" name="title" placeholder="Weekly Meeting" ref={register({required: true})} />
+                        <input className="input-field" type="text" name="title" placeholder="Weekly Meeting" required ref={register({required: true})} />
                         <FormLabel htmlFor="description" label="Description" />
                         <input className="input-field" type="text" name="description" placeholder="Weekly Stand Up and Project" ref={register({required: true})} />
                         <FormLabel htmlFor="duration" label="Duration" />
@@ -102,17 +98,18 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
                     <form action="">
                         <FormLabel htmlFor="guests" label="Add Guests" />
                         <div className="search">
-                            <input onChange={handleSearchInput} onClick={() => setDisplayDropdown(true)} className="input-field" type="text" name="search" placeholder="Search" ref={register} />
+                            <input onChange={handleSearchInput} onClick={() => setDisplayDropdown(!displayDropdown)} className="input-field" type="text" name="search" placeholder="Search" ref={register} />
                             <img className="looking-glass" id="search-icon-form" src={LookingGlass} alt="Search"/>
                         </div>
                         <div className="guest-dropdown" >
                             {guestOptions}
                         </div>
+                        <div>
+                            <ul className="guest-list" id={displayDropdown ? "hidden" : ""}>
+                                {addedGuests}
+                            </ul>
+                        </div>
                     </form>
-                        {/* <select className="input-field" name="guests" ref={register({required: true})} defaultValue="default" onChange={addGuest} selectedindex="0" id="drop">
-                            <option value="default">Select Contacts</option>
-                            { guestOptions }
-                        </select> */}
                 </div>
             </div>
         </div>

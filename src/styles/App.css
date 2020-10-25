@@ -267,16 +267,15 @@ body {
           box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
   display: inline-block;
   position: relative;
-  height: 55vh;
 }
 
 .flex-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: flex-start stretch;
-      -ms-flex-align: flex-start stretch;
-          align-items: flex-start stretch;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .input-label {
@@ -291,6 +290,10 @@ body {
   margin-left: 2%;
   width: 39%;
   position: relative;
+  overflow: hidden;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
 }
 
 #search-icon-form {
@@ -313,7 +316,6 @@ body {
   -webkit-box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
           box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
-  overflow: hidden;
 }
 
 .dropdown-label {
@@ -326,9 +328,13 @@ body {
   background: #efeeee;
 }
 
-.dropdown-list {
-  overflow-y: scroll;
-  overflow: hidden;
-  max-height: 100%;
+.guest-list {
+  list-style: none;
+  margin-top: 2rem;
+  z-index: 10;
+}
+
+#hidden {
+  display: none;
 }
 /*# sourceMappingURL=App.css.map */

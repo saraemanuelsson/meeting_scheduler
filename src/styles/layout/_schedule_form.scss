@@ -5,12 +5,11 @@
     box-shadow: $default-box-shadow;
     display: inline-block;
     position: relative;
-    height: 55vh;
 }
 
 .flex-content {
     display: flex;
-    align-items: flex-start stretch;
+    align-items: flex-start;
 }
 
 .input-label {
@@ -25,6 +24,8 @@
     margin-left: 2%;
     width: 39%;
     position: relative;
+    overflow: hidden;
+    align-self: stretch;
 }
 
 #search-icon-form {
@@ -45,20 +46,25 @@
     display: inline;
     box-shadow: $default-box-shadow;
     width: 100%;
-    overflow: hidden;
+
 }
 
 .dropdown-label {
     display: block;
     padding: 1rem;
     background: $color-grey-form;
+
     &:hover {
         background: $color-light-grey;
     }
 }
 
-.dropdown-list {
-    overflow-y: scroll;
-    overflow: hidden;
-    max-height: 100%;
+.guest-list {
+    list-style: none;
+    margin-top: 2rem;
+    z-index: 10;
+}
+
+#hidden {
+    display: none;
 }
