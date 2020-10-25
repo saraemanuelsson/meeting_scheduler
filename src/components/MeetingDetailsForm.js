@@ -14,6 +14,10 @@ const MeetingDetailsForm = ({ message, setMessage, saveMeeting, guests }) => {
             setMessage("Please add guests")
         }
     }
+
+    // const durationOptions = (
+    //     re
+    // )
     
     return (
         <div className="form-details large-flex-item">
@@ -23,6 +27,7 @@ const MeetingDetailsForm = ({ message, setMessage, saveMeeting, guests }) => {
                 <FormLabel htmlFor="description" label="Description" />
                 <input className="input-field" type="text" name="description" placeholder="Weekly Stand Up and Project" required ref={register} />
                 <FormLabel htmlFor="duration" label="Duration" />
+                <button className="input-field dropdown">...</button>
                 <select className="input-field dropdown" name="duration" ref={register} defaultValue="default">
                     <option disabled value="default">...</option>
                     <option value={1}>1h</option>

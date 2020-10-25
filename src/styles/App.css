@@ -11,6 +11,13 @@
 html {
   font-size: 62.5%;
   background: #efeeee;
+  height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 40%;
+  }
 }
 
 body {
@@ -69,6 +76,18 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .icon-container {
+    display: none;
+  }
+  .selected-nav {
+    border: none !important;
+  }
+  .left-arrow {
+    display: none;
+  }
 }
 
 .house {
@@ -175,6 +194,12 @@ a {
   padding: 1rem 1rem 1rem 3rem;
   border: none;
   margin: auto;
+}
+
+.search-input:focus {
+  outline: none !important;
+  -webkit-box-shadow: 0 0 0 1px #ff7f27;
+          box-shadow: 0 0 0 1px #ff7f27;
 }
 
 .looking-glass {
@@ -290,6 +315,16 @@ a {
           box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
+@media only screen and (max-width: 600px) {
+  .main {
+    -ms-grid-columns: 15vw auto;
+        grid-template-columns: 15vw auto;
+  }
+  .sidenav-container {
+    width: 15vw;
+  }
+}
+
 .topnav {
   background: #003049;
   -ms-grid-column: 2;
@@ -352,17 +387,32 @@ a {
 }
 
 .large-flex-item {
-  width: 59%;
+  width: 40vw;
 }
 
 .small-flex-item {
-  margin-left: 2%;
-  width: 39%;
+  margin-left: 2rem;
+  width: 30vw;
   position: relative;
   overflow: hidden;
   -ms-flex-item-align: stretch;
       -ms-grid-row-align: stretch;
       align-self: stretch;
+}
+
+@media only screen and (max-width: 600px) {
+  .flex-content {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .small-flex-item {
+    width: 70vw;
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+  .large-flex-item {
+    width: 70vw;
+  }
 }
 
 #search-icon-form {

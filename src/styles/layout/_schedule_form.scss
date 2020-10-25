@@ -17,15 +17,32 @@
 }
 
 .large-flex-item {
-    width: 59%;
+    width: 40vw;
 }
 
 .small-flex-item {
-    margin-left: 2%;
-    width: 39%;
+    margin-left: 2rem;
+    width: 30vw;
     position: relative;
     overflow: hidden;
     align-self: stretch;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .flex-content {
+        flex-wrap: wrap;
+    }
+
+    .small-flex-item {
+        width: 70vw;
+        margin-top: 1rem;
+        margin-left: 0;
+    }
+
+    .large-flex-item {
+        width: 70vw;
+    }
 }
 
 #search-icon-form {

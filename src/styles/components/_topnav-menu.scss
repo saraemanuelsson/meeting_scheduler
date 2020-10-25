@@ -6,6 +6,13 @@
     margin: 0 15%;
 }
 
+@media only screen and (max-width: 600px) {
+
+    .topnav-list {
+        margin: 0;
+    }
+}
+
 .topnav-link {
     display: flex;
     align-items: center;
