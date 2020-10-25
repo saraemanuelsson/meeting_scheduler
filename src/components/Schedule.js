@@ -7,7 +7,8 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
 
     const [ guests, setGuests ] = useState([])
     const [ message, setMessage ] = useState("")
-    const [ displayDropdown, setDisplayDropdown ] = useState(false)
+    const [ displayGuestDropdown, setDisplayGuestDropdown ] = useState(false)
+    const [ displayDurationDropdown, setDisplayDurationDropdown ] = useState(false)
 
     const header = "Schedule Meeting"
 
@@ -53,8 +54,8 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
         <div className="page-content">
             <PageHeader title={header}/>
             <div className="content-container flex-content" onClick={removeMessage}>
-                <MeetingDetailsForm message={message} setMessage={setMessage} saveMeeting={saveMeeting} guests={guests}/>
-                <GuestDetailsForm guests={guests} users={users} displayDropdown={displayDropdown} setDisplayDropdown={setDisplayDropdown} addGuests={addGuests}/>
+                <MeetingDetailsForm message={message} setMessage={setMessage} saveMeeting={saveMeeting} guests={guests} displayDropdown={displayDurationDropdown} setDisplayDropdown={setDisplayDurationDropdown}/>
+                <GuestDetailsForm guests={guests} users={users} displayDropdown={displayGuestDropdown} setDisplayDropdown={setDisplayGuestDropdown} addGuests={addGuests}/>
             </div>
         </div>
     )

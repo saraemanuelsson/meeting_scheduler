@@ -1,23 +1,30 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import FormLabel from "./FormLabel"
+import DownArrow from "../assets/Arrow.png"
 
-const MeetingDetailsForm = ({ message, setMessage, saveMeeting, guests }) => {
+const MeetingDetailsForm = ({ message, setMessage, saveMeeting, guests, displayDropdown, setDisplayDropdown }) => {
     
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, watch } = useForm()
 
     const onScheduleMeeting = (data, event) => {
         if (guests.length !== 0) {
             saveMeeting(data)
+            setDisplayDropdown(false)
             event.target.reset()
         } else {
             setMessage("Please add guests")
         }
     }
 
-    // const durationOptions = (
-    //     re
-    // )
+    const durationOptions = [1,2,3].map(number => {
+        return (
+            <div key={number}>
+                <input type="radio" className="dropdown-content" id={number} name="duration" ref={register} value={number}></input>
+                <label className="dropdown-label" htmlFor={number}>{number}h</label>
+            </div>
+        )
+    })
     
     return (
         <div className="form-details large-flex-item">
@@ -27,13 +34,13 @@ const MeetingDetailsForm = ({ message, setMessage, saveMeeting, guests }) => {
                 <FormLabel htmlFor="description" label="Description" />
                 <input className="input-field" type="text" name="description" placeholder="Weekly Stand Up and Project" required ref={register} />
                 <FormLabel htmlFor="duration" label="Duration" />
-                <button className="input-field dropdown">...</button>
-                <select className="input-field dropdown" name="duration" ref={register} defaultValue="default">
-                    <option disabled value="default">...</option>
-                    <option value={1}>1h</option>
-                    <option value={2}>2h</option>
-                    <option value={3}>3h</option>
-                </select>
+                <div className="dropdown-button-container">
+                    <button type="button" onClick={() => setDisplayDropdown(!displayDropdown)} className="input-field dropdown dropdown-button">. . .</button>
+                    <img className="down-arrow" src={DownArrow} alt="dropdown"/>
+                </div>
+                <div className={displayDropdown ? "duration-dropdown" : "duration-dropdown hidden"}>
+                    {durationOptions}
+                </div>
                 <input className="orange-button" type="submit" value="Schedule Meeting"/>
                 <p id="confirmation">{message}</p>
             </form>

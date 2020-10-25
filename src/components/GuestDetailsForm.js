@@ -24,8 +24,8 @@ const GuestDetailsForm = ({guests, users, displayDropdown, setDisplayDropdown, a
         guestOptions = users.map(user => {
             return (
                 <div key={user.id}>
-                    <input onChange={handleGuestsSelected} checked={guests.includes(user.id) ? true : false} type="checkbox" className="dropdown-content" id={user.id} name="guests" ref={register} value={user.id}/>
-                    <label className="heading secondary dropdown-label" htmlFor={user.id}>{user.name}</label>
+                    <input onChange={handleGuestsSelected} checked={guests.includes(user.id) ? true : false} type="checkbox" className="dropdown-content" id={user.name} name="guests" ref={register} value={user.id}/>
+                    <label className="heading secondary dropdown-label" htmlFor={user.name}>{user.name}</label>
                 </div>
             )
         })
@@ -47,7 +47,7 @@ const GuestDetailsForm = ({guests, users, displayDropdown, setDisplayDropdown, a
                     {guestOptions}
                 </div>
                 <div>
-                    <ul className="guest-list" id={displayDropdown ? "hidden" : ""}>
+                    <ul className={displayDropdown ? "guest-list hidden" : "guest-list"}>
                         {addedGuests}
                     </ul>
                 </div>

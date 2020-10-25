@@ -5,7 +5,7 @@ import SideBar from "../components/SideBar"
 import Home from "../components/Home"
 import Schedule from "../components/Schedule"
 
-const MeetingSchedulerContainer = (props) => {
+const MeetingSchedulerContainer = () => {
 
     const [ users, setUsers ] = useState([])
     const [ meetings, setMeetings ] = useState([])
@@ -38,7 +38,7 @@ const MeetingSchedulerContainer = (props) => {
                         setFilteredMeetings(data)
                     }
                 })
-                .catch(error => console.error)
+                .catch(() => console.error())
             })
 
         }
@@ -48,17 +48,6 @@ const MeetingSchedulerContainer = (props) => {
     const capitalizeFirstLetter = (string) => {
         const prettyString = string.charAt(0).toUpperCase() + string.slice(1)
         return prettyString
-    }
-
-    const getDisplayDetailsForMeeting = (meeting) => {
-        const meetingOwner = users.find(user => user.id === meeting.owner)
-        const prettyMeeting = {
-            ...meeting,
-            name: capitalizeFirstLetter(meeting.name),
-            start_time: new Date(meeting.start_time),
-            owner: meetingOwner.name
-        }
-        return prettyMeeting
     }
 
     const filterMeetings = (searchCriteria) => {
@@ -104,8 +93,8 @@ const MeetingSchedulerContainer = (props) => {
               },
             body: JSON.stringify(payload)
         })
-        .then(res => saveNewMeeting(payload))
-        .catch(error => console.error)
+        .then(() => saveNewMeeting(payload))
+        .catch(() => console.error())
     }
 
     const saveNewMeeting = (meetingDetails) => {
@@ -127,8 +116,8 @@ const MeetingSchedulerContainer = (props) => {
                 <SideBar />
                 <NavBar handleSearch={filterMeetings}/>
                 <Switch>
-                    <Route exact path="/" render={(props) => (<Home meetings={filteredMeetings} users={users} capitalizeFirstLetter={capitalizeFirstLetter}/>)} />
-                    <Route path="/schedule" render={(props) => (<Schedule users={users} handleNewMeeting={postMeeting} searchContacts={getOwnerIdsFromSearch}/>)} />
+                    <Route exact path="/" render={() => (<Home meetings={filteredMeetings} users={users} capitalizeFirstLetter={capitalizeFirstLetter}/>)} />
+                    <Route path="/schedule" render={() => (<Schedule users={users} handleNewMeeting={postMeeting} searchContacts={getOwnerIdsFromSearch}/>)} />
                 </Switch>
             </div>
         </Router>

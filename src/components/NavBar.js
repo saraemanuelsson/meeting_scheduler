@@ -4,12 +4,7 @@ import LookingGlass from "../assets/LookingGlass.png"
 
 const NavBar = ({ handleSearch }) => {
 
-    const { register, handleSubmit, watch, errors } = useForm()
-    
-    const onSearch = () => {
-        //redirect to home if you're on schedule?
-        console.log(watch("search"));
-    }
+    const { register, watch } = useForm()
 
     const handleSearchInput = () => {
         handleSearch(watch("search").toLowerCase())
@@ -18,7 +13,7 @@ const NavBar = ({ handleSearch }) => {
     return (
         <div className="topnav">
             <div className="search">
-                <form onSubmit={handleSubmit(onSearch)}>
+                <form>
                     <input onChange={handleSearchInput} className="search-input" type="text" name="search" placeholder="Search" ref={register} />
                     <img className="looking-glass" src={LookingGlass} alt="Search"/>
                 </form>
