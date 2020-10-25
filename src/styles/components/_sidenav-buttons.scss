@@ -1,14 +1,11 @@
-// .sidenav-container {
-//     position: relative;
-//     display: block;
-// }
-
-// .sidenav-button {
-//     display: inline;
-// }
-
 .page-nav-link {
+    font-weight: 700;
+}
 
+.selected-nav {
+    border-left: 8px solid $color-orange !important;
+    color: $color-orange;
+    box-shadow: inset 8px 0 5px -5px rgba(255,127,39, .6);
 }
 
 .icon-container {

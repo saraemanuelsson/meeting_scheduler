@@ -7,6 +7,11 @@ body {
     line-height: 1.7;
 }
 
+a {
+    text-decoration: none;
+    color: $color-blue;
+}
+
 .heading {
     text-transform: uppercase;
 }

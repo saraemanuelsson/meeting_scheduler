@@ -25,6 +25,11 @@ body {
   line-height: 1.7;
 }
 
+a {
+  text-decoration: none;
+  color: #003049;
+}
+
 .heading {
   text-transform: uppercase;
 }
@@ -41,6 +46,17 @@ body {
 
 .text-highlight {
   color: #ff7f27;
+}
+
+.page-nav-link {
+  font-weight: 700;
+}
+
+.selected-nav {
+  border-left: 8px solid #ff7f27 !important;
+  color: #ff7f27;
+  -webkit-box-shadow: inset 8px 0 5px -5px rgba(255, 127, 39, 0.6);
+          box-shadow: inset 8px 0 5px -5px rgba(255, 127, 39, 0.6);
 }
 
 .icon-container {
@@ -242,15 +258,15 @@ body {
 .main {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 15vw auto;
-      grid-template-columns: 15vw auto;
+  -ms-grid-columns: 20vw auto;
+      grid-template-columns: 20vw auto;
   -ms-grid-rows: 9vh auto;
       grid-template-rows: 9vh auto;
   grid-gap: 0;
 }
 
 .sidenav-container {
-  width: 15vw;
+  width: 20vw;
   height: 100%;
   position: fixed;
   overflow-x: hidden;
@@ -396,7 +412,8 @@ body {
   -ms-grid-columns: 2fr 4fr 1fr;
       grid-template-columns: 2fr 4fr 1fr;
   width: 100%;
-  padding: 2rem 0;
+  padding: 3rem 0;
+  border-left: 8px solid #ffffff;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;

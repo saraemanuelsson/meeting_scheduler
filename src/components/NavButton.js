@@ -20,9 +20,11 @@ const NavButton = ( {text, icon, selected} ) => {
         )
     }
 
+    const selectedClass = selected ? "selected-nav" : null
+
     return (
         <>
-            <div className="sidenav-button-container">
+            <div className={selected ? "sidenav-button-container selected-nav" : "sidenav-button-container"}>
                 {iconComponent}
                 <h1 className="heading primary page-nav-link">{text}</h1>
                 <img className="left-arrow" src={arrow} alt="select-route"/>

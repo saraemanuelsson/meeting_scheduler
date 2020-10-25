@@ -13,13 +13,13 @@ const SideBar = () => {
             <nav className="sidenav">
                 <ul>
                     <li onClick={() => setHomeSelected(true)}>
-                        <Link to="/">
+                        <Link to="/" className="page-nav-link">
                             <NavButton text="Home" icon="home" selected={homeSelected} />
                         </Link>
                     </li>
                     <li className="side-nav-button" onClick={() => setHomeSelected(false)}>
-                        <Link to="/schedule">
-                            <NavButton text="Calendar" icon="calendar" selected={!homeSelected} />
+                        <Link to="/schedule" className="page-nav-link">
+                            <NavButton text="Schedule" icon="calendar" selected={!homeSelected} />
                         </Link>
                     </li>
                 </ul>
