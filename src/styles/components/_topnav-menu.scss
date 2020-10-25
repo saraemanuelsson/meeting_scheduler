@@ -1,10 +1,14 @@
 .topnav-list {
     list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 15%;
 }
 
 .topnav-link {
-    display: inline-block;
-    margin: 0 3rem 0 3rem;
+    display: flex;
+    align-items: center;
     font-weight: 500;
     font-size: $default-font-size;
     a {

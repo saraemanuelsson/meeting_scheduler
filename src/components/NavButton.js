@@ -20,8 +20,6 @@ const NavButton = ( {text, icon, selected} ) => {
         )
     }
 
-    const selectedClass = selected ? "selected-nav" : null
-
     return (
         <>
             <div className={selected ? "sidenav-button-container selected-nav" : "sidenav-button-container"}>

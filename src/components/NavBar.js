@@ -23,15 +23,13 @@ const NavBar = ({ handleSearch }) => {
                     <img className="looking-glass" src={LookingGlass} alt="Search"/>
                 </form>
             </div>
-            <div className="nav-links">
-                <nav>
-                    <ul className="topnav-list">
-                        <li className="topnav-link"><a href="#">Profile</a></li>
-                        <li className="topnav-link"><a href="#">Admin</a></li>
-                        <li className="topnav-link" id="logout-button"><a href="#">Logout</a></li>
-                    </ul>
-                </nav>
-            </div>
+            <nav className="nav-links">
+                <ul className="topnav-list">
+                    <li className="topnav-link"><a href="#">Profile</a></li>
+                    <li className="topnav-link"><a href="#">Admin</a></li>
+                    <li className="topnav-link" id="logout-button"><a href="#">Logout</a></li>
+                </ul>
+            </nav>
         </div>
     )
 }
