@@ -2,13 +2,17 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import FormLabel from "./FormLabel"
 
-const MeetingDetailsForm = ({ message, saveMeeting }) => {
+const MeetingDetailsForm = ({ message, setMessage, saveMeeting, guests }) => {
     
     const { register, handleSubmit } = useForm()
 
     const onScheduleMeeting = (data, event) => {
-        saveMeeting(data)
-        event.target.reset()
+        if (guests.length !== 0) {
+            saveMeeting(data)
+            event.target.reset()
+        } else {
+            setMessage("Please add guests")
+        }
     }
     
     return (

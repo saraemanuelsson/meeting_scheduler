@@ -12,17 +12,17 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
     const header = "Schedule Meeting"
 
     const saveMeeting = (meetingDetails) => {
+        
         const startTime = new Date()
         const endTime = getEndTime(parseInt(meetingDetails.duration))
-        const meetingGuests = guests.map(guest => guest.id)
 
         const payload = {
             name: meetingDetails.title.toLowerCase(),
-            owner: guests[0].id,
+            owner: guests[0],
             description: meetingDetails.description.toLowerCase(),
             start_time: startTime.toISOString(),
             end_time: endTime.toISOString(),
-            guests: meetingGuests
+            guests: guests
         }
 
         handleNewMeeting(payload)
@@ -53,7 +53,7 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
         <div className="page-content">
             <PageHeader title={header}/>
             <div className="content-container flex-content" onClick={removeMessage}>
-                <MeetingDetailsForm message={message} saveMeeting={saveMeeting}/>
+                <MeetingDetailsForm message={message} setMessage={setMessage} saveMeeting={saveMeeting} guests={guests}/>
                 <GuestDetailsForm guests={guests} users={users} displayDropdown={displayDropdown} setDisplayDropdown={setDisplayDropdown} addGuests={addGuests}/>
             </div>
         </div>

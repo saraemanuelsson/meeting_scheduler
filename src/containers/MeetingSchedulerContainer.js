@@ -94,7 +94,7 @@ const MeetingSchedulerContainer = (props) => {
         return matchingIds
     }
 
-    const postMeeting = (payload) => {;
+    const postMeeting = (payload) => {
         const url = "https://coding-test.ajenta.io/meetings"
 
         fetch(url, {
@@ -109,7 +109,6 @@ const MeetingSchedulerContainer = (props) => {
     }
 
     const saveNewMeeting = (meetingDetails) => {
-        console.log(meetingDetails);
         const newMeetingCallId = meetings[meetings.length -1].callid + 1
         const newMeeting = {
             callid: newMeetingCallId,
