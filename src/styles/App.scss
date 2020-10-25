@@ -4,7 +4,7 @@
 @import "base/base";
 @import "base/typography";
 
-@import "components/sidenav";
+@import "components/sidenav-buttons";
 @import "components/topnav-menu";
 @import "components/searchbar";
 @import "components/meeting-list";
@@ -13,3 +13,5 @@
 @import "layout/main";
 @import "layout/topnav";
 @import "layout/schedule_form";
+@import "layout/sidenav";
+@import "layout/sidenav_buttons-layout";

@@ -1,0 +1,67 @@
+// .sidenav-container {
+//     position: relative;
+//     display: block;
+// }
+
+// .sidenav-button {
+//     display: inline;
+// }
+
+.page-nav-link {
+
+}
+
+.icon-container {
+    display: inline-block;
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
+    justify-self: center;
+    align-items: center;
+}
+
+.house {
+    height: 100%;
+}
+
+.centered-absolute {
+    position: absolute;
+    margin: auto;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+.door {
+    height: 53%;
+    bottom: 1px;
+}
+
+.left-arrow {
+    height: 70%;
+}
+
+.calendar-square {
+    height: 100%;
+}
+
+.calendar-horizontal {
+    width: 100%;
+    top: 30%;
+}
+
+.calendar-vertical {
+    height: 40%;
+    margin-top: -4px;
+}
+
+#calendar-vertical-1 {
+    margin-left: 25%;
+}
+
+#calendar-vertical-2 {
+    margin-right: 25%;
+}
+
+
+

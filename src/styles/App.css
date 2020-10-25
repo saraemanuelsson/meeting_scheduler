@@ -43,12 +43,59 @@ body {
   color: #ff7f27;
 }
 
-.sidenav-buttons {
-  margin-top: 24vh;
+.icon-container {
+  display: inline-block;
+  position: relative;
+  height: 2.5rem;
+  width: 2.5rem;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.nav-image {
+.house {
+  height: 100%;
+}
+
+.centered-absolute {
+  position: absolute;
+  margin: auto;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+.door {
+  height: 53%;
+  bottom: 1px;
+}
+
+.left-arrow {
+  height: 70%;
+}
+
+.calendar-square {
+  height: 100%;
+}
+
+.calendar-horizontal {
   width: 100%;
+  top: 30%;
+}
+
+.calendar-vertical {
+  height: 40%;
+  margin-top: -4px;
+}
+
+#calendar-vertical-1 {
+  margin-left: 25%;
+}
+
+#calendar-vertical-2 {
+  margin-right: 25%;
 }
 
 .topnav-list {
@@ -202,7 +249,7 @@ body {
   grid-gap: 0;
 }
 
-.sidenav {
+.sidenav-container {
   width: 15vw;
   height: 100%;
   position: fixed;
@@ -336,5 +383,22 @@ body {
 
 #hidden {
   display: none;
+}
+
+.sidenav {
+  margin-top: 24vh;
+}
+
+.sidenav-button-container {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 4fr 1fr;
+      grid-template-columns: 2fr 4fr 1fr;
+  width: 100%;
+  padding: 2rem 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=App.css.map */

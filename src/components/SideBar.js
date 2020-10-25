@@ -1,29 +1,25 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import HomeSelected from "../assets/HomeOrange.png"
-import HomeUnselected from "../assets/HomeBlue.png"
-import ScheduleSelected from "../assets/ScheduleSelected.png"
-import ScheduleUnselected from "../assets/ScheduleBlue.png"
+import { Link, useLocation } from "react-router-dom"
+import NavButton from "./NavButton"
 
 const SideBar = () => {
 
-    const [ homeSelected, setHomeSelected ] = useState(true)
+    const currentPath = useLocation().pathname
 
-    const homeButton = homeSelected ? HomeSelected : HomeUnselected
-    const scheduleButton = homeSelected ? ScheduleUnselected : ScheduleSelected
+    const [ homeSelected, setHomeSelected ] = useState((currentPath === "/"))
 
     return (
-        <div className="sidenav">
-            <nav className="sidenav-buttons">
+        <div className="sidenav-container">
+            <nav className="sidenav">
                 <ul>
-                    <li onClick={() => {setHomeSelected(true)}}>
+                    <li onClick={() => setHomeSelected(true)}>
                         <Link to="/">
-                            <img className="nav-image" src={homeButton} alt="Home"/>
+                            <NavButton text="Home" icon="home" selected={homeSelected} />
                         </Link>
                     </li>
-                    <li onClick={() => {setHomeSelected(false)}}>
+                    <li className="side-nav-button" onClick={() => setHomeSelected(false)}>
                         <Link to="/schedule">
-                            <img className="nav-image" src={scheduleButton} alt="Schedule"/>
+                            <NavButton text="Calendar" icon="calendar" selected={!homeSelected} />
                         </Link>
                     </li>
                 </ul>
