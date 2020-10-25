@@ -5,7 +5,7 @@ import DownArrow from "../assets/Arrow.png"
 
 const MeetingDetailsForm = ({ message, setMessage, saveMeeting, guests, displayDropdown, setDisplayDropdown }) => {
     
-    const { register, handleSubmit, watch } = useForm()
+    const { register, handleSubmit } = useForm()
 
     const onScheduleMeeting = (data, event) => {
         if (guests.length !== 0) {
@@ -38,7 +38,7 @@ const MeetingDetailsForm = ({ message, setMessage, saveMeeting, guests, displayD
                     <button type="button" onClick={() => setDisplayDropdown(!displayDropdown)} className="input-field dropdown dropdown-button">. . .</button>
                     <img className="down-arrow" src={DownArrow} alt="dropdown"/>
                 </div>
-                <div className={displayDropdown ? "duration-dropdown" : "duration-dropdown hidden"}>
+                <div className={displayDropdown ? "dropdown-div" : "dropdown-div hidden"}>
                     {durationOptions}
                 </div>
                 <input className="orange-button" type="submit" value="Schedule Meeting"/>

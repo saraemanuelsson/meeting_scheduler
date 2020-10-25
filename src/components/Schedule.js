@@ -19,7 +19,7 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
 
         const payload = {
             name: meetingDetails.title.toLowerCase(),
-            owner: guests[0],
+            owner: getRandomOwner(),
             description: meetingDetails.description.toLowerCase(),
             start_time: startTime.toISOString(),
             end_time: endTime.toISOString(),
@@ -29,6 +29,11 @@ const Schedule = ({ users, handleNewMeeting, searchContacts }) => {
         handleNewMeeting(payload)
         setMessage("Meeting Scheduled!")
         setGuests([])
+    }
+
+    const getRandomOwner = () => {
+        const owner = guests[Math.floor(Math.random() * guests.length)]
+        return owner
     }
     
     const getEndTime = (duration) => {
