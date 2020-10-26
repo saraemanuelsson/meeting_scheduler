@@ -20,7 +20,7 @@ const MeetingDetailsForm = ({ message, setMessage, saveMeeting, guests, displayD
     const durationOptions = [1,2,3].map(number => {
         return (
             <div key={number}>
-                <input type="radio" className="dropdown-content" id={number} name="duration" ref={register} value={number}></input>
+                <input type="radio" className="dropdown-content" id={number} name="duration" ref={register} value={number} required></input>
                 <label className="dropdown-label" htmlFor={number}>{number}h</label>
             </div>
         )
